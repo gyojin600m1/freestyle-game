@@ -2,8 +2,8 @@
 <html lang="ja"><head>
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'none';
-    script-src 'unsafe-inline' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com;
-    style-src 'unsafe-inline' https://cdn.tailwindcss.com;
+    script-src 'unsafe-inline';
+    style-src 'unsafe-inline';
     img-src data: https:;
     font-src https:;
     connect-src https://esm.sh https://unpkg.com https://cdnjs.cloudflare.com;
@@ -12,23 +12,44 @@
   ">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>超・自由形 タイムアタック 🏊🔥 (本格スタート版)</title>
-<!-- Tailwind CSS (CDNから読み込み・実行時にユーティリティを自動生成) -->
-<script src="https://cdn.tailwindcss.com"></script>
-
+<title>超・自由形 タイムアタック</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+  /* 公開用: Tailwind CDNなしで動く最小ユーティリティ */
+  .relative{position:relative}.absolute{position:absolute}.inset-0{inset:0}.block{display:block}.hidden{display:none!important}
+  .flex{display:flex}.grid{display:grid}.flex-col{flex-direction:column}.flex-1{flex:1 1 0%}.items-center{align-items:center}.justify-between{justify-content:space-between}
+  .grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .gap-1{gap:.25rem}.gap-1\\.5{gap:.375rem}.gap-2{gap:.5rem}.gap-3{gap:.75rem}.gap-y-1{row-gap:.25rem}.space-y-1>*+*{margin-top:.25rem}
+  .w-full{width:100%}.w-5{width:1.25rem}.h-3{height:.75rem}.max-w-md{max-width:28rem}.max-w-\\[120px\\]{max-width:120px}.max-h-\\[120px\\]{max-height:120px}.max-h-\\[220px\\]{max-height:220px}
+  .mx-auto{margin-left:auto;margin-right:auto}.my-auto{margin-top:auto;margin-bottom:auto}.mt-3\\.5{margin-top:.875rem}
+  .mb-0\\.5{margin-bottom:.125rem}.mb-1{margin-bottom:.25rem}.mb-1\\.5{margin-bottom:.375rem}.mb-2{margin-bottom:.5rem}.mb-2\\.5{margin-bottom:.625rem}.mb-3{margin-bottom:.75rem}.mb-3\\.5{margin-bottom:.875rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}
+  .p-2\\.5{padding:.625rem}.p-3{padding:.75rem}.p-3\\.5{padding:.875rem}.p-4{padding:1rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-4{padding-left:1rem;padding-right:1rem}
+  .py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\\.5{padding-top:.625rem;padding-bottom:.625rem}.py-3{padding-top:.75rem;padding-bottom:.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.py-8{padding-top:2rem;padding-bottom:2rem}.pr-1{padding-right:.25rem}
+  .overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pointer-events-none{pointer-events:none}.outline-none{outline:none}.underline{text-decoration:underline}
+  .rounded-md{border-radius:.375rem}.rounded-lg{border-radius:.5rem}.rounded-xl{border-radius:.75rem}.rounded-full{border-radius:9999px}
+  .border{border-width:1px;border-style:solid}.border-t{border-top-width:1px;border-top-style:solid}.border-slate-700{border-color:#334155}.border-slate-800{border-color:#1e293b}.border-slate-800\\/50{border-color:rgba(30,41,59,.5)}.border-cyan-400{border-color:#22d3ee}.border-cyan-700{border-color:#0e7490}.border-cyan-800\\/20{border-color:rgba(21,94,117,.2)}.border-cyan-800\\/40{border-color:rgba(21,94,117,.4)}.border-red-900\\/60{border-color:rgba(127,29,29,.6)}
+  .bg-black{background:#000}.bg-slate-800{background:#1e293b}.bg-slate-900{background:#0f172a}.bg-slate-900\\/90{background:rgba(15,23,42,.9)}.bg-slate-950{background:#020617}.bg-slate-950\\/90{background:rgba(2,6,23,.9)}.bg-cyan-900{background:#164e63}.bg-cyan-950{background:#083344}.bg-cyan-950\\/30{background:rgba(8,51,68,.3)}.bg-cyan-950\\/50{background:rgba(8,51,68,.5)}.bg-red-950\\/40{background:rgba(69,10,10,.4)}.bg-sky-500{background:#0ea5e9}
+  .bg-gradient-to-r{background-image:linear-gradient(to right,var(--tw-gradient-from,#22d3ee),var(--tw-gradient-to,#3b82f6))}.from-cyan-400{--tw-gradient-from:#22d3ee}.to-blue-500{--tw-gradient-to:#3b82f6}.bg-clip-text{-webkit-background-clip:text;background-clip:text}
+  .text-transparent{color:transparent}.text-white{color:#fff}.text-slate-950{color:#020617}.text-slate-500{color:#64748b}.text-slate-400{color:#94a3b8}.text-slate-300{color:#cbd5e1}.text-slate-200{color:#e2e8f0}.text-cyan-100{color:#cffafe}.text-cyan-300{color:#67e8f9}.text-cyan-400{color:#22d3ee}.text-emerald-400{color:#34d399}.text-amber-300{color:#fcd34d}.text-amber-400{color:#fbbf24}.text-amber-400\\/80{color:rgba(251,191,36,.8)}.text-amber-600{color:#d97706}.text-red-200{color:#fecaca}.text-red-400{color:#f87171}.text-red-500{color:#ef4444}.text-rose-500{color:#f43f5e}
+  .text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.text-\\[9px\\]{font-size:9px}.text-\\[10px\\]{font-size:10px}.text-\\[11px\\]{font-size:11px}.text-xs{font-size:.75rem;line-height:1rem}.text-sm{font-size:.875rem;line-height:1.25rem}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}
+  .font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-black{font-weight:900}.leading-relaxed{line-height:1.625}.tracking-wide{letter-spacing:.025em}.tracking-wider{letter-spacing:.05em}.tracking-widest{letter-spacing:.1em}.tracking-\\[0\\.2em\\]{letter-spacing:.2em}
+  .opacity-60{opacity:.6}.shadow-md{box-shadow:0 4px 6px rgba(0,0,0,.25)}.transition-all{transition-property:all}.transition-colors{transition-property:color,background-color,border-color}.duration-300{transition-duration:.3s}
+  .hover\\:bg-slate-700:hover{background:#334155}.hover\\:bg-sky-400:hover{background:#38bdf8}.hover\\:bg-cyan-900\\/50:hover{background:rgba(22,78,99,.5)}.hover\\:text-cyan-300:hover{color:#67e8f9}.hover\\:text-slate-200:hover{color:#e2e8f0}.focus\\:border-cyan-400:focus{border-color:#22d3ee}
+  .animate-pulse{animation:pulse 1.4s ease-in-out infinite}.animate-bounce{animation:bounce 1s infinite}@keyframes pulse{50%{opacity:.55}}@keyframes bounce{0%,100%{transform:translateY(-8%)}50%{transform:translateY(0)}}
+  button,input{font:inherit}button{cursor:pointer;border-color:transparent}input::placeholder{color:#64748b}
+  @media (min-width:768px){.md\\:text-3xl{font-size:1.875rem;line-height:2.25rem}.md\\:py-6{padding-top:1.5rem;padding-bottom:1.5rem}}
   /* iOSでのアドレスバーを考慮した dvh (Dynamic Viewport Height) の採用 */
-  html,body { width:100%; height: 100dvh; overflow:hidden; position:fixed; background:#030914;
+  html,body { width:100%; height:100vh; height:100dvh; overflow:hidden; position:fixed; background:#030914;
     font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Noto Sans JP",sans-serif;
     touch-action:none; user-select:none; -webkit-user-select:none; }
-  #game { display:block; width:100vw; height: 100dvh; }
+  #game { display:block; width:100vw; height:100vh; height:100dvh; touch-action:none; }
 
   /* 縦スクロールとFlexboxのはみ出しバグを解消し、セーフエリア(iOSの余白)を確保 */
   .overlay { position:fixed; inset:0; display:flex; flex-direction:column; align-items:center;
     justify-content:flex-start; background:rgba(2, 8, 20, 0.96); color:#e8f4ff; z-index:10;
-    padding: 20px 20px calc(24px + env(safe-area-inset-bottom)) 20px; text-align:center;
-    overflow-y:auto; -webkit-overflow-scrolling:touch; }
+    padding: max(16px, env(safe-area-inset-top)) 20px calc(24px + env(safe-area-inset-bottom)) 20px; text-align:center;
+    overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; touch-action:pan-y; }
   .hidden { display:none !important; }
 
   /* ネオンプールスタイル */
@@ -59,7 +80,7 @@
 
 <!-- タイトル画面 -->
 <div id="title" class="overlay">
-  <div class="max-w-md w-full px-2 py-2 md:py-6 my-auto">
+  <div class="max-w-md w-full px-2 py-2 md:py-6 my-auto" id="titlePanel">
     <h1 class="text-2xl md:text-3xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-0.5">超・自由形 タイムアタック</h1>
     <div class="text-[9px] tracking-[0.2em] text-cyan-300 font-bold mb-3">SUPER FREESTYLE TIME ATTACK 🏊🔥</div>
 
@@ -115,6 +136,8 @@
 
     <!-- スタートボタン -->
     <button id="startBtn" class="w-full py-3 mb-2 rounded-full text-slate-950 text-base font-black tracking-widest neon-btn">レース開始</button>
+
+    <div class="text-[10px] leading-relaxed text-slate-400 mb-1">スマホ: 左右タップ / 中央で浮上・呼吸　PC: F・J / Space</div>
 
     <!-- ランキング簡易表示切替 -->
     <button id="showLdrBtn" class="text-[11px] text-cyan-400 underline mt-3.5 block mx-auto hover:text-cyan-300">🏆 この端末のランキングを見る</button>
@@ -221,13 +244,22 @@ let W = 0, H = 0, DPR = 1;
 
 function resize() {
   DPR = Math.min(window.devicePixelRatio || 1, 2);
-  W = window.innerWidth; H = window.innerHeight;
+  // iOS Safari ではツールバー分を除いた visualViewport の実寸を使う（はみ出し防止）
+  const vv = window.visualViewport;
+  W = Math.round(vv ? vv.width : window.innerWidth);
+  H = Math.round(vv ? vv.height : window.innerHeight);
   cv.width = W * DPR; cv.height = H * DPR;
   cv.style.width = W + "px"; cv.style.height = H + "px";
   cx.setTransform(DPR, 0, 0, DPR, 0, 0);
 }
 window.addEventListener("resize", resize);
+window.addEventListener("orientationchange", () => setTimeout(resize, 150));
+if (window.visualViewport) {
+  window.visualViewport.addEventListener("resize", resize);
+}
 resize();
+// iOS はロード直後の高さが不正確なことがあるため、読み込み後に測り直す
+window.addEventListener("load", () => { resize(); setTimeout(resize, 300); });
 
 const store = {
   get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
@@ -1203,23 +1235,18 @@ function saveTimeLocal(time) {
       timestamp: Date.now()
     };
 
-    // 既存のランキングをロード
     let leaderboard = [];
     const saved = store.get(localLeaderboardKey);
     if (saved) {
       leaderboard = JSON.parse(saved);
     }
 
-    // 新しいスコアを追加
     leaderboard.push(scoreData);
-
-    // 保存
     store.set(localLeaderboardKey, JSON.stringify(leaderboard));
 
     statusEl.textContent = "✓ ローカルに保存完了！";
     statusEl.className = "text-[10px] text-emerald-400";
 
-    // リーダーボードを更新
     fetchLeaderboard();
   } catch (error) {
     console.error("Local Storage Save Error: ", error);
@@ -1240,13 +1267,9 @@ function fetchLeaderboard() {
       records = JSON.parse(saved);
     }
 
-    // 現在の距離設定に合致するものだけにフィルタリング
     records = records.filter(d => d.dist === RACE_DIST);
-
-    // タイム昇順（早い順）でソート
     records.sort((a, b) => a.time - b.time);
 
-    // トップ10を表示
     const top10 = records.slice(0, 10);
     renderList(ldrList, top10);
   } catch (error) {
@@ -1434,7 +1457,6 @@ document.getElementById("shareXBtn").addEventListener("click", () => {
 
 // 強力な「ワンクリックコピペ」用ハイブリッド関数
 async function copyToClipboard(text) {
-  // 1. 最新の安全な Clipboard API を試す
   if (navigator.clipboard && window.isSecureContext) {
     try {
       await navigator.clipboard.writeText(text);
@@ -1444,11 +1466,9 @@ async function copyToClipboard(text) {
     }
   }
 
-  // 2. iOS Safari / iframe 内などで動作するレガシーフォールバック
   try {
     const textArea = document.createElement("textarea");
     textArea.value = text;
-    // 画面外に配置するが、iOSでのスクロールバグを防ぐためインライン固定
     textArea.style.position = "fixed";
     textArea.style.top = "0";
     textArea.style.left = "0";
@@ -1461,7 +1481,6 @@ async function copyToClipboard(text) {
     textArea.style.background = "transparent";
     document.body.appendChild(textArea);
 
-    // iOS 特有の選択処理
     if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
       const range = document.createRange();
       range.selectNodeContents(textArea);
@@ -1489,10 +1508,10 @@ document.getElementById("copyBtn").addEventListener("click", async () => {
 
   if (success) {
     copiedEl.textContent = "クリップボードにコピーしました！";
-    copiedEl.style.color = "#10b981"; // エメラルドグリーン
+    copiedEl.style.color = "#10b981";
   } else {
     copiedEl.textContent = "コピーに失敗しました (スクショを撮ってね)";
-    copiedEl.style.color = "#ef4444"; // レッド
+    copiedEl.style.color = "#ef4444";
   }
   setTimeout(() => { copiedEl.textContent = ""; }, 3000);
 });
@@ -1564,7 +1583,23 @@ toggleRuleBtn.addEventListener("click", () => {
   }
 });
 
+// 公開前検証用の読み取り専用状態。通常プレイには影響しません。
+window.__swimDebug = {
+  get state() { return state; },
+  get stateName() { return Object.keys(S).find(k => S[k] === state) || String(state); },
+  get raceDistance() { return RACE_DIST; },
+  get canvasSize() { return { width: W, height: H, dpr: DPR }; },
+  get overlay() {
+    const title = document.getElementById("title");
+    const panel = document.getElementById("titlePanel");
+    return {
+      titleHidden: title.classList.contains("hidden"),
+      titleScrollHeight: title.scrollHeight,
+      titleClientHeight: title.clientHeight,
+      panelHeight: panel ? panel.getBoundingClientRect().height : 0
+    };
+  }
+};
+
 </script>
-
-
 </body></html>
